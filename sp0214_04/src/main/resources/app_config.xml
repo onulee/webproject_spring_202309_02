@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<bean id="student" class="com.java.Student">
+   <property name="name" value="홍길동" />
+   <property name="age" value="20" />
+   <property name="grade" value="2" />
+   <property name="classNum" value="3" />
+</bean>
+
+<bean id="student2" class="com.java.Student">
+   <constructor-arg value="유관순" />
+   <constructor-arg value="21" />
+   <constructor-arg value="3" />
+   <constructor-arg value="1" />
+</bean>
+
+<bean id="stuInfo" class="com.java.StuInfo">
+  <constructor-arg>
+     <ref bean="student" /> 
+  </constructor-arg>
+
+</bean>
+
+
+
+</beans>
