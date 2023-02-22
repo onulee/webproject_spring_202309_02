@@ -7,7 +7,7 @@
 		<title>index</title>
 	</head>
 	<body>
-	  <h2>메인페이지</h2>
+	  <h2>메인페이지2</h2>
 	  <h2>숫자 : ${param.num}</h2>
 	  <h3>로그인을 하셔야 글을 입력할 수 있습니다.</h3>
 	  <ul>
