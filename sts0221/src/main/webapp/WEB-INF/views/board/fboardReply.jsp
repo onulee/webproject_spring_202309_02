@@ -33,17 +33,17 @@
 		  }
 		
 		  function cancelBtn(){
-			  if(confirm("글쓰기를 취소하시겠습니까?")) location.href="fboardList.do?page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}";
+			  if(confirm("글쓰기를 취소하시겠습니까?")) location.href="fboardList?page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}";
 		  }
 		</script>
 	</head>
 	<body>
 		<h2>자유게시판 답글달기</h2>
-		<form action="doFboardReply.do" method="post" name="fboardFrm" enctype="multipart/form-data">
-		<input type="hidden" name="bgroup" value="${bBean.bgroup }">
-		<input type="hidden" name="id" value="${bBean.id }">
-		<input type="hidden" name="bstep" value="${bBean.bstep }">
-		<input type="hidden" name="bindent" value="${bBean.bindent }">
+		<form action="fboardReply" method="post" name="fboardFrm" enctype="multipart/form-data">
+		<input type="hidden" name="bgroup" value="${boardVo.bgroup }">
+		<input type="hidden" name="id" value="${boardVo.id }">
+		<input type="hidden" name="bstep" value="${boardVo.bstep }">
+		<input type="hidden" name="bindent" value="${boardVo.bindent }">
 		<input type="hidden" name="page" value="${page}">
 	    <input type="hidden" name="searchTitle" value="${searchTitle}">
 	    <input type="hidden" name="searchWord" value="${searchWord}">
@@ -54,11 +54,11 @@
 		   </colgroup>
 			<tr>
 			  <th>제목</th>
-			  <td><input type="text" name="btitle" id="btitle" value="[답글] ${bBean.btitle }"></td>
+			  <td><input type="text" name="btitle" id="btitle" value="[답글] ${boardVo.btitle }"></td>
 			</tr>
 			<tr>
 			  <th>작성자</th>
-			  <td>${bBean.id}</td>
+			  <td>${boardVo.id}</td>
 			</tr>
 			<tr id="content">
 			  <th>내용</th>
@@ -69,13 +69,13 @@
 
 --------------------------------------
 [답글]			    
-${bBean.bcontent}
+${boardVo.bcontent}
 			    </textarea>
 			  </td>
 			</tr>
 			<tr>
 			  <th>첨부파일</th>
-			  <td><input type="file" name="bfile" id="bfile"></td>
+			  <td><input type="file" name="file" id="bfile"></td>
 			</tr>
 			
 		</table>

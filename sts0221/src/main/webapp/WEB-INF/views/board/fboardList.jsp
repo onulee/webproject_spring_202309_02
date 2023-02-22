@@ -93,7 +93,7 @@
 					  <td>${bvo.bhit}</td>
 					</tr>
 				</c:forEach>
-			<c:if test="${result=='fail' or list.size()==0}">
+			<c:if test="${map.result=='fail' or map.list.size()==0}">
 				<tr>
 				  <td colspan="5">데이터가 없습니다.</td>
 				</tr>
@@ -103,45 +103,45 @@
 		<!-- 첫페이지 이동  -->
 		<c:if test="${map.page==1}"><span>&#171;</span></c:if>
 		<c:if test="${map.page!=1}">
-		  <a href="fboardList.do?page=1&searchTitle=${searchTitle}&searchWord=${searchWord}"><span>&#171;</span></a>
+		  <a href="fboardList?page=1&searchTitle=${map.searchTitle}&searchWord=${map.searchWord}"><span>&#171;</span></a>
 		</c:if>
 		<!-- 이전페이지 이동 -->
 		<c:if test="${map.page>1}">
-   		  <a href="fboardList.do?page=${map.page-1}&searchTitle=${searchTitle}&searchWord=${searchWord}"><span>&#60;</span></a>
+   		  <a href="fboardList?page=${map.page-1}&searchTitle=${map.searchTitle}&searchWord=${map.searchWord}"><span>&#60;</span></a>
 		</c:if>
 		<c:if test="${map.page==1}">
 		  <span>&#60;</span>
 		</c:if>
 		<!-- 하단넘버링부분 -->
-		<c:forEach begin="${startpage }" end="${endpage}" step="1" var="num">
-		      <c:if test="${page==num}">
+		<c:forEach begin="${map.startpage }" end="${map.endpage}" step="1" var="num">
+		      <c:if test="${map.page==num}">
 			    <span id="on">${num}</span>
 			  </c:if>
-			  <c:if test="${page!=num}">
-			    <a href="fboardList.do?page=${num}&searchTitle=${searchTitle}&searchWord=${searchWord}">
+			  <c:if test="${map.page!=num}">
+			    <a href="fboardList?page=${num}&searchTitle=${map.searchTitle}&searchWord=${map.searchWord}">
 			      <span>${num}</span>
 			    </a>
 			  </c:if>
 		</c:forEach>
 		<!-- 다음페이지 이동 -->
-		<c:if test="${page==maxpage}"><span>&#62;</span></c:if>
-		<c:if test="${page<maxpage}">
-  		  <a href="fboardList.do?page=${page+1}&searchTitle=${searchTitle}&searchWord=${searchWord}">
+		<c:if test="${map.page==map.maxpage}"><span>&#62;</span></c:if>
+		<c:if test="${map.page<map.maxpage}">
+  		  <a href="fboardList?page=${map.page+1}&searchTitle=${map.searchTitle}&searchWord=${map.searchWord}">
   		    <span>&#62;</span>
   		  </a>
 		</c:if>
 		<!-- 끝페이지 이동 -->
-		<c:if test="${page!=maxpage}">
-		    <a href="fboardList.do?page=${maxpage}&searchTitle=${searchTitle}&searchWord=${searchWord}">
+		<c:if test="${map.page!=map.maxpage}">
+		    <a href="fboardList?page=${map.maxpage}&searchTitle=${map.searchTitle}&searchWord=${map.searchWord}">
 		      <span>&#187;</span>
 		    </a>
 		</c:if>
-		<c:if test="${page==maxpage }"><span>&#187;</span></c:if>
+		<c:if test="${map.page==map.maxpage }"><span>&#187;</span></c:if>
 		</div>
 		
 		<div>
-		  <a href="fboardWrite.do?page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}"><button type="button">글쓰기</button></a>
-		  <a href="index.do"><button type="button">메인페이지</button></a>
+		  <a href="fboardWrite?page=${map.page}&searchTitle=${map.searchTitle}&searchWord=${map.searchWord}"><button type="button">글쓰기</button></a>
+		  <a href="/"><button type="button">메인페이지</button></a>
 		</div>
 	</body>
 </html>

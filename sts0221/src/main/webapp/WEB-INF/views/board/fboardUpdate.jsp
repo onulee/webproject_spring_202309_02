@@ -21,7 +21,7 @@
 		</style>
 		<script>
 		    function cancelBtn(){
-		    	if(confirm("수정을 취소하시겠습니까?")) location.href="fboardList.do?page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}";
+		    	if(confirm("수정을 취소하시겠습니까?")) location.href="fboardList?page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}";
 		    }
 		    function fboardBtn(){
 		    	if($("#btitle").val().length<2){
@@ -35,42 +35,42 @@
 	</head>
 	<body>
 		<h2>자유게시판 수정</h2>
-		<form action="doFboardUpdate.do" method="post" name="fboardFrm" enctype="multipart/form-data">
+		<form action="fboardUpdate" method="post" name="fboardFrm" enctype="multipart/form-data">
 		<table>
 		   <colgroup>
 		     <col width="30%">
 		     <col width="70%">
 		   </colgroup>
-		    <input type="hidden" name="bno" value="${bBean.bno}">
-		    <input type="hidden" name="bOldFile" value="${bBean.bfile}">
+		    <input type="hidden" name="bno" value="${boardVo.bno}">
+		    <input type="hidden" name="bfile" value="${boardVo.bfile}">
 		    <input type="hidden" name="page" value="${page}">
 		    <input type="hidden" name="searchTitle" value="${searchTitle}">
 		    <input type="hidden" name="searchWord" value="${searchWord}">
 			<tr>
 			  <th>제목</th>
-			  <td><input type="text" name="btitle" id="btitle" value="${bBean.btitle}"></td>
+			  <td><input type="text" name="btitle" id="btitle" value="${boardVo.btitle}"></td>
 			</tr>
 			<tr>
 			  <th>작성자</th>
-			  <td>${bBean.id}</td>
+			  <td>${boardVo.id}</td>
 			</tr>
 			<tr id="content">
 			  <th>내용</th>
 			  <td>
-			    <textarea rows="20" cols="80" name="bcontent" id="bcontent">${bBean.bcontent}</textarea>
+			    <textarea rows="20" cols="80" name="bcontent" id="bcontent">${boardVo.bcontent}</textarea>
 			  </td>
 			</tr>
 			<tr>
 			  <th>기존첨부파일</th>
-			  <td>${bBean.bfile}</td>
+			  <td>${boardVo.bfile}</td>
 			</tr>
 			<tr>
 			  <th>이미지</th>
-			  <td><img src="upload/${bBean.bfile}"></td>
+			  <td><img src="/upload/${boardVo.bfile}"></td>
 			</tr>
 			<tr>
 			  <th>첨부파일</th>
-			  <td><input type="file" name="bfile" id="bfile"></td>
+			  <td><input type="file" name="file" id="bfile"></td>
 			</tr>
 		</table>
 		<div>

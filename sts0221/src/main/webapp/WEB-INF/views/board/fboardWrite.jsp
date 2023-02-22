@@ -38,7 +38,7 @@
 	</head>
 	<body>
 		<h2>자유게시판 글쓰기</h2>
-		<form action="fboardView" method="post" name="fboardFrm" >
+		<form action="fboardWrite" method="post" name="fboardFrm" enctype="multipart/form-data" >
 		<table>
 		   <colgroup>
 		     <col width="30%">
@@ -60,7 +60,7 @@
 			</tr>
 			<tr>
 			  <th>첨부파일</th>
-			  <td><input type="file" name="bfile" id="bfile"></td>
+			  <td><input type="file" name="file" id="bfile"></td>
 			</tr>
 			
 		</table>

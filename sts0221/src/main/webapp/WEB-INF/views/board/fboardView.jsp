@@ -20,10 +20,10 @@
 		</style>
 		<script>
 		   function deleteBtn(){
-			   if(confirm("게시글을 삭제하시겠습니까?")) location.href="doFboardDelete.do?bno=${bBean.bno}&page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}";
+			   if(confirm("게시글을 삭제하시겠습니까?")) location.href="fboardDelete?bno=${boardVo.bno}&page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}";
 		   }
 		   function updateBtn(){
-			   if(confirm("게시글을 수정하시겠습니까?")) location.href="fboardUpdate.do?bno=${bBean.bno}&page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}";
+			   if(confirm("게시글을 수정하시겠습니까?")) location.href="fboardUpdate?bno=${boardVo.bno}&page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}";
 		   }
 		</script>
 	</head>
@@ -57,25 +57,25 @@
 			<tr>
 			  <th>파일명</th>
 			  <td>
-				  <c:if test="${bBean.bfile!=null}">
-				    <a href="./upload/${bBean.bfile}" download>${bBean.bfile}</a>
+				  <c:if test="${boardVo.bfile!=null}">
+				    <a href="/upload/${boardVo.bfile}" download>${boardVo.bfile}</a>
 				  </c:if>
-				  <c:if test="${bBean.bfile==null}">파일없음</c:if>
+				  <c:if test="${boardVo.bfile==null}">파일없음</c:if>
 			  </td>
 			</tr>
 			<tr>
 			  <th>첨부파일</th>
 			  <td>
-			      <c:if test="${bBean.bfile!=null}">
-				    <img src="./upload/${bBean.bfile}">
+			      <c:if test="${boardVo.bfile!=null}">
+				    <img src="/upload/${boardVo.bfile}">
 				  </c:if>
-				  <c:if test="${bBean.bfile==null}">파일없음</c:if>
+				  <c:if test="${boardVo.bfile==null}">파일없음</c:if>
 			  </td>
 			</tr>
 		</table>
 		<div>
-		  <a href="fboardList.do?page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}"><button type="button">목록</button></a>
-		  <a href="fboardReply.do?bno=${bBean.bno}&page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}"><button type="button">답변달기</button></a>
+		  <a href="fboardList?page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}"><button type="button">목록</button></a>
+		  <a href="fboardReply?bno=${boardVo.bno}&page=${page}&searchTitle=${searchTitle}&searchWord=${searchWord}"><button type="button">답변달기</button></a>
 		  <button type="button" onclick="updateBtn()">수정</button>
 		  <button type="button" onclick="deleteBtn()">삭제</button>
 		</div>

@@ -19,6 +19,8 @@
 	  <ul>
 	    <li><a href="board/fboardList">자유게시판</a></li>
 	    <li><a href="board/fboardWrite">글쓰기</a></li>
+	    <li><a href="board/fboardWrite2">다중 글쓰기2</a></li>
+	    <li><a href="board/fboardWrite3">ajax 글쓰기</a></li>
 	    <li><a href="logout">로그아웃</a></li>
 	    <li>회원정보수정</li>
 	    <li><a href="memberAll">전체회원보기</a></li>
