@@ -28,7 +28,7 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardService;
-	
+	//
 	//--------- [  글쓰기 페이지 ] -----------------------------------
 	@GetMapping("board/fboardWrite")  //글쓰기 페이지이동
 	public String fboardWrite(Model model) {
