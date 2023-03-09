@@ -7,5 +7,9 @@ import com.java.vo.BoardVo;
 public interface BoardService {
 
 	List<BoardVo> selectBoardAll();
+	
+	int insertNumBoard();
+
+	void insertNumBoard2();
 
 }

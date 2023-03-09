@@ -9,6 +9,38 @@
      select * from board
   </select>
   
+  <!-- mysql 방법 -->
+  <!-- <insert id="insertNumBoard" parameterType="java.util.List">
+     insert into 
+     numboard 
+     (num,id,pw) 
+     values
+     <foreach collection="list" index="index" item="item" separator=",">
+       (#{item.num},#{item.id},#{item.pw})
+     </foreach>
+  </insert> -->
+  <!-- oracle 방법 -->
+  <insert id="insertNumBoard" parameterType="java.util.List">
+	 <foreach item="item" collection="list" index="index" open="INSERT ALL"  close="SELECT * FROM DUAL" separator=" " >
+		into numboard(seqno,num,id,pw)
+		values
+			(seq.nextval,#{item.num},#{item.id},#{item.pw})
+	 </foreach>
+  </insert>
+  
+  <insert id="insertNumBoard2" parameterType="java.util.List">
+	insert into numboard2(seqno,num,id,pw)
+	select seq.nextval, A.* from(
+	 <foreach item="item" collection="list" separator="UNION ALL " >
+	   select #{item.num} as num,
+	          #{item.id} as id,
+	          #{item.pw} as pw
+	   from dual
+	 </foreach>) A
+  </insert>
+  
+  
+  
   
   
   
