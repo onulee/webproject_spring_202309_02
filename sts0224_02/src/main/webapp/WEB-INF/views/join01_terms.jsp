@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>회원가입 - 약관동의</title>
+		<title>회원가입 - 약관동의111</title>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/style_join01_terms.css">
 	</head>
