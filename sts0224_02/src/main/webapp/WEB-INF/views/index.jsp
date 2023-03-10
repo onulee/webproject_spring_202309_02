@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>집밥을 특별하게, 쿡킷</title>
+		<title>집밥을 특별하게, 쿡킷1111 </title>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/style_main.css">
