@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.mapper.BoardMapper">
+  
+  <select id="boardSelectAll" resultType="com.java.vo.BoardVo">
+      select * from 
+      (select rownum rnum,a.* from board a order by bgroup desc,bstep asc)
+      where rnum between 11 and 20
+  </select>
+  <!-- 이전글 -->
+  <select id="preSelectOne" resultType="com.java.vo.BoardVo">
+      select * from
+		(select rownum rnum,a.* from board a order by bgroup desc,bstep asc)
+		where rnum=
+		(
+		select rnum from
+		(select rownum rnum,a.* from board a order by bgroup desc,bstep asc)
+		where bno=#{bno}
+		)-1
+  </select>
+  <!-- 다음글 -->
+  <select id="nextSelectOne" resultType="com.java.vo.BoardVo">
+        select * from
+		(select rownum rnum,a.* from board a order by bgroup desc,bstep asc)
+		where rnum=
+		(
+		select rnum from
+		(select rownum rnum,a.* from board a order by bgroup desc,bstep asc)
+		where bno=#{bno}
+		)+1
+  </select>
+  
+  
+  <select id="boardSelectOne" resultType="com.java.vo.BoardVo">
+      select * from board where bno=#{bno}
+  </select>
+  
+  <insert id="boardInsert">
+     <selectKey resultType="int" keyProperty="bno" order="BEFORE">
+       select board_seq.nextval from dual
+     </selectKey>
+  
+      insert into board values
+      (#{bno},#{id},#{btitle},#{bcontent},sysdate,1,1,#{bno},0,'',0)
+  </insert>
+  
+  
+</mapper>
