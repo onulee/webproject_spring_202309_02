@@ -14,7 +14,7 @@
 	 			<ul>
 	 				<li>회원가입</li>
 	 				<li>로그인</li>
-	 				<li><a href="/board/boardList2">고객행복센터</a></li>
+	 				<li><a href="/board/boardList4">고객행복센터</a></li>
 	 				<li>배송정보검색</li>
 	 				<li>기프트카드 등록</li>
 	 			</ul>

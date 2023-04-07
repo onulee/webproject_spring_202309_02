@@ -8,10 +8,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/notice_list.css">
+  <script type="text/javascript">
+    $(function(){
+    	
+    });
+    
+    function listBtn(){
+    	alert("리스트 버튼 클릭");
+    	
+    	$.ajax({
+    		url:"/board/b_ajax",  //보내는 링크주소
+    		type:"post",          //타입
+    		dataType:"json",      //받는 데이터 타입
+    		data:{
+    			"category":$("#category").val(),
+    		    "searchWord":$("#searchWord").val()  	
+    		},              //보내는 데이터
+    		success:function(data){  //성공
+    			alert("성공");
+    		    var htmlData="";
+    		    for(i=0;i<data.list.length;i++){
+    		    	if(data.list[i].bno % 3==0){
+	    		    htmlData +='<tr>';
+	    		    htmlData +='<td>'+data.list[i].bno+'</td>';
+	    		    htmlData +='<td class="table-title">'+ data.list[i].btitle +'</td>';
+	    		    htmlData +='<td>'+data.list[i].id+'</td>';
+	    		    htmlData +='<td>'+data.list[i].bdate+'</td>';
+	    		    htmlData +='<td>'+data.list[i].bhit+'</td>';
+	    		    htmlData +='</tr>';
+    		    		
+    		    	}
+    		    	
+    		    }
+    		    
+    	        $("#tbody").html(htmlData);
+    		    
+    		},
+    		error:function(){        //실패할때
+    			alert("실패");
+    		}
+    		
+    	});
+    	
+    	
+    	
+    	
+    }
+  
+  </script>
 </head>
 <body>
   <header>
@@ -59,11 +108,10 @@
         </select>
 
         <div class="title">
-          <input type="text" name="searchWord" size="16">
+          <input type="text" name="searchWord" id="searchWord" size="16">
         </div>
-        
   
-        <button type="submit"><i class="fas fa-search"></i></button>
+        <button type="button" onclick="listBtn()"><i class="fas fa-search"></i></button>
       </form>
     </div>
 
@@ -82,15 +130,16 @@
 		 <th>날짜</th>
 		 <th>조회수</th>
 	  </tr>
-	  <c:forEach items="${list}" var="boardVo" >
-      <tr>
-        <td>${boardVo.bno}</td>
-        <td class="table-title">${boardVo.btitle}</td>
-        <td>${boardVo.id}</td>
-        <td><fmt:formatDate value="${boardVo.bdate}" pattern="yyyy-MM-dd"/></td>
-        <td>${boardVo.bhit}</td>
-      </tr>
-	  </c:forEach>
+      <tbody id="tbody">
+	      <tr>
+	        <td>번호</td>
+	        <td class="table-title">제목</td>
+	        <td>작성자</td>
+	        <td>날짜</td>
+	        <td>조회수</td>
+	      </tr>
+      </tbody>
+      
     </table>
 
     <ul class="page-num">

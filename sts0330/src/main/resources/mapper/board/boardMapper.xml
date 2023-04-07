@@ -2,11 +2,68 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.java.mapper.BoardMapper">
   
+  <!-- 검색 -->
+  <select id="boardSelectSearch" resultType="com.java.vo.BoardVo">
+      select * from board where
+      <if test="category == 'all' ">
+         btitle like '%'||#{searchWord}||'%' or bcontent like '%'||#{searchWord}||'%'
+      </if>
+      <if test="category != 'all' ">
+         ${category} like '%'||#{searchWord}||'%'
+      </if>
+      
+  </select>
+  
   <select id="boardSelectAll" resultType="com.java.vo.BoardVo">
       select * from 
       (select rownum rnum,a.* from board a order by bgroup desc,bstep asc)
-      where rnum between 11 and 20
   </select>
+  
+  <!-- 2개 객체 가져오기 -->
+  <select id="boardSelectAll2" resultMap="boardMemberVoMap">
+      select * from 
+	  (select rownum rnum,a.*,pw,name,phone,gender,hobby from board a,member b
+      where a.id=b.id order by bgroup desc,bstep asc)
+      where rnum between 1 and 10
+  </select>
+  
+  <resultMap id="boardMemberVoMap" type="com.java.vo.BoardMemberVo" >
+     <collection property="boardVo" resultMap="boardVoMap" />
+     <collection property="memberVo" resultMap="memberVoMap" />
+  </resultMap>
+  
+  <!-- BoardVo 선언 -->
+  <resultMap id="boardVoMap" type="com.java.vo.BoardVo" >
+        <result column="bno" property="bno" /> 
+        <result column="id" property="id" /> 
+        <result column="btitle" property="btitle" /> 
+        <result column="bcontent" property="bcontent" /> 
+        <result column="bdate" property="bdate" /> 
+        <result column="bstep" property="bstep" /> 
+        <result column="bhit" property="bhit" /> 
+        <result column="bgroup" property="bgroup" /> 
+        <result column="bindent" property="bindent" /> 
+        <result column="bfile" property="bfile" /> 
+        <result column="topchk" property="topchk" /> 
+  </resultMap>
+  
+  <!-- MemberVo 선언 -->
+  <resultMap id="memberVoMap" type="com.java.vo.MemberVo" >
+        <result column="id" property="id" /> 
+        <result column="pw" property="pw" /> 
+        <result column="name" property="name" /> 
+        <result column="phone" property="phone" /> 
+        <result column="gender" property="gender" /> 
+        <result column="hobby" property="hobby" /> 
+  </resultMap>
+  
+  
+  
+  
+  
+  
+  
+  
   <!-- 이전글 -->
   <select id="preSelectOne" resultType="com.java.vo.BoardVo">
       select * from
@@ -43,6 +100,15 @@
       insert into board values
       (#{bno},#{id},#{btitle},#{bcontent},sysdate,1,1,#{bno},0,'',0)
   </insert>
+  
+  <!-- <insert id="boardInsert">
+     <selectKey resultType="int" keyProperty="bno" order="BEFORE">
+       select board_seq.nextval from dual
+     </selectKey>
+  
+      insert into board values
+      (#{bno},#{id},#{btitle},#{bcontent},sysdate,1,1,#{bno},0,'',0)
+  </insert> -->
   
   
 </mapper>

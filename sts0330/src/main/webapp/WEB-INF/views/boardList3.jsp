@@ -61,7 +61,6 @@
         <div class="title">
           <input type="text" name="searchWord" size="16">
         </div>
-        
   
         <button type="submit"><i class="fas fa-search"></i></button>
       </form>
@@ -82,13 +81,13 @@
 		 <th>날짜</th>
 		 <th>조회수</th>
 	  </tr>
-	  <c:forEach items="${list}" var="boardVo" >
+	  <c:forEach items="${list}" var="boardMemberVo" >
       <tr>
-        <td>${boardVo.bno}</td>
-        <td class="table-title">${boardVo.btitle}</td>
-        <td>${boardVo.id}</td>
-        <td><fmt:formatDate value="${boardVo.bdate}" pattern="yyyy-MM-dd"/></td>
-        <td>${boardVo.bhit}</td>
+        <td>${boardMemberVo.boardVo.bno}</td>
+        <td class="table-title">${boardMemberVo.boardVo.btitle}</td>
+        <td>${boardMemberVo.memberVo.name}</td>
+        <td><fmt:formatDate value="${boardMemberVo.boardVo.bdate}" pattern="yyyy-MM-dd"/></td>
+        <td>${boardMemberVo.boardVo.bhit}</td>
       </tr>
 	  </c:forEach>
     </table>
@@ -103,7 +102,7 @@
       <li class="last"></li>
     </ul>
 
-    <a href="/board/boardWrite"><div class="write">쓰기</div></a>
+    <div class="write">쓰기</div>
   </section>
 
   <footer>

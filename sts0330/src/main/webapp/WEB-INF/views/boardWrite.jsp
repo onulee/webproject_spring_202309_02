@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -48,7 +52,7 @@
     <h1>관리자 글쓰기</h1>
     <hr>
 
-    <form action="/write" name="write" method="post">
+    <form action="/boardWrite" name="write" method="post">
       <table>
         <colgroup>
           <col width="15%">

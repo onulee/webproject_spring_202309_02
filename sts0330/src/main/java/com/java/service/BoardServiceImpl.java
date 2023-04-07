@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.mapper.BoardMapper;
+import com.java.vo.BoardMemberVo;
 import com.java.vo.BoardVo;
 
 @Service
@@ -19,6 +20,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override //게시글 전체 가져오기
 	public List<BoardVo> boardSelectAll() {
 		List<BoardVo> list = boardMapper.boardSelectAll();
+		return list;
+	}
+	@Override //2개 객체 가져오기
+	public List<BoardMemberVo> boardSelectAll2() {
+		List<BoardMemberVo> list = boardMapper.boardSelectAll2();
 		return list;
 	}
 
@@ -39,10 +45,20 @@ public class BoardServiceImpl implements BoardService {
 	@Override  //ajax
 	public BoardVo boardInsert(BoardVo boardVo) {
 		System.out.println("boardInsert bno 전 : "+boardVo.getBno());
-		boardMapper.boardInsert(boardVo);
+		// 0-실패,1-성공
+		int no = boardMapper.boardInsert(boardVo);
+		
+		
+		System.out.println("boardInsert no : "+no);
 		System.out.println("boardInsert bno 후 : "+boardVo.getBno());
 		BoardVo bVo = boardMapper.boardSelectOne(boardVo.getBno());
 		return bVo;
+	}
+
+	@Override //검색
+	public List<BoardVo> boardSelectSearch(String category, String searchWord) {
+		List<BoardVo> list = boardMapper.boardSelectSearch(category,searchWord);
+		return list;
 	}
 
 }
