@@ -48,7 +48,7 @@
 				<p>
 					감사합니다.
 					<strong>회원가입이 완료되었습니다.</strong>
-					<a href="index.do"><button>HOME</button></a>
+					<a href="index"><button>HOME</button></a>
 				</p>
 			</div>	
 		</section>
