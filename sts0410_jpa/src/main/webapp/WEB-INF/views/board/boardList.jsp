@@ -53,6 +53,12 @@
 		<th>날짜</th>
 		<th>조회수</th>
       </tr>
+      <script>
+        console.log("pageable : "+"${jpaPage.pageable}");
+        console.log("총페이지 totalPages : "+"${jpaPage.totalPages}");
+        console.log("총개수 totalElements : "+"${jpaPage.totalElements}");
+        console.log("현재 페이지 number : "+"${jpaPage.number}");
+      </script>
       <c:forEach items="${list}" var="bvo">
 	      <tr>
           <c:if test="${bvo.topchk>0}">
@@ -65,7 +71,7 @@
 	          <c:forEach begin="1" end="${bvo.bindent}" step="1">
 	            <img src="images/icon_reply.png">
 	          </c:forEach>
-	          <a href="notice_view.do?bno=${bvo.bno}&page=${page}">${bvo.btitle}</a>
+	          <a href="notice_view?bno=${bvo.bno}&page=${page}">${bvo.btitle}</a>
 	        </td>
 	        <td>${bvo.memberVo.name}</td>
 	        <td><fmt:formatDate value="${bvo.bdate}" pattern="yyyy-MM-dd"/></td>
@@ -76,25 +82,25 @@
     </table>
 
     <ul class="page-num">
-      <c:if test="${page>1}"><a href="notice_list.do?page=1"><li class="first"></li></a></c:if>
-      <c:if test="${page==1}"><li class="first"></li></c:if>
+      <c:if test="${page>0}"><a href="boardList?page=0"><li class="first"></li></a></c:if>
+      <c:if test="${page==0}"><li class="first"></li></c:if>
       
-      <c:if test="${page>1}"><a href="notice_list.do?page=${page-1}"><li class="prev"></li></a></c:if>
-      <c:if test="${page==1}"><li class="prev"></li></c:if>
-      <c:forEach var="num" begin="${startpage}" end="${endpage}" step="1">
+      <c:if test="${page>0}"><a href="boardList?page=${page-1}"><li class="prev"></li></a></c:if>
+      <c:if test="${page==0}"><li class="prev"></li></c:if>
+      <c:forEach var="num" begin="${startPage}" end="${endPage}" step="1">
         <c:if test="${page==num}">
-           <li class="num on"><div>${num}</div></li>
+           <li class="num on"><div>${num+1}</div></li>
         </c:if>
         <c:if test="${page!=num}">
-           <li class="num"><a href="notice_list.do?page=${num}"><div>${num}</div></a></li>
+           <li class="num"><a href="boardList?page=${num}"><div>${num+1}</div></a></li>
         </c:if>
       </c:forEach>
       
-      <c:if test="${page<maxpage}"><a href="notice_list.do?page=${page+1}"><li class="next"></li></a></c:if>
-      <c:if test="${page==maxpage }"><li class="next"></li></c:if>
+      <c:if test="${page<maxPage-1}"><a href="boardList?page=${page+1}"><li class="next"></li></a></c:if>
+      <c:if test="${page==maxPage-1 }"><li class="next"></li></c:if>
       
-      <c:if test="${page<maxpage }"><a href="notice_list.do?page=${maxpage}"><li class="last"></li></a></c:if>
-      <c:if test="${page==maxpage }"><li class="last"></li></c:if>
+      <c:if test="${page<maxPage-1 }"><a href="boardList?page=${maxPage-1}"><li class="last"></li></a></c:if>
+      <c:if test="${page==maxPage-1 }"><li class="last"></li></c:if>
     
     </ul>
       <a href="boardWrite?page=1"><div class="write">쓰기</div></a>
