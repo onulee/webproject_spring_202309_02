@@ -1,6 +1,7 @@
 package com.java.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,8 +31,11 @@ public class BoardController {
 		System.out.println("boardView bno : "+bno);
 	
 		// 게시글 1개 가져오기  findAll,findById,save-(insert,update),Delete
-		BoardVo boardVo = boardService.boardFindById(bno);
-		model.addAttribute("boardVo",boardVo);
+		Map<String, Object> map = boardService.boardFindById(bno);
+		
+		model.addAttribute("boardVo",map.get("boardVo"));
+		model.addAttribute("preBvo",map.get("preBvo"));
+		model.addAttribute("nextBvo",map.get("nextBvo"));
 		
 		return "board/boardView";
 	}

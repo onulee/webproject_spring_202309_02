@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.mapper.BoardMapper">
+  
+  <!-- 게시글 전체 가져오기 -->
+  <select id="boardSelectAll" resultType="com.java.vo.BoardVo">
+      select * from (select rownum rnum, b.* from
+      (select * from board 
+      <if test="category != null">
+          <if test="category == 'all'">
+             where btitle like '%'||#{searchWord}||'%' or bcontent like '%'||#{searchWord}||'%'
+	      </if>
+	      <if test="category == 'btitle'">
+	         where btitle like '%'||#{searchWord}||'%'
+	      </if>
+	      <if test="category =='bcontent'">
+	         where bcontent like '%'||#{searchWord}||'%'
+	      </if>
+      </if>
+      order by topchk desc, bgroup desc,bstep asc) b) 
+      where rnum>=#{startRow} and #{endRow}>=rnum     
+  </select>
+  <!-- 게시글 1개 가져오기 -->
+  <select id="boardSelectOne" resultType="com.java.vo.BoardVo">
+      select * from board where bno=#{bno}
+  </select>
+  
+  <!-- 게시글 총개수 -->
+  <select id="selectCount" resultType="int">
+      select count(*) count from board 
+      <if test="category != null">
+          <if test="category == 'all'">
+             where btitle like '%'||#{searchWord}||'%' or bcontent like '%'||#{searchWord}||'%'
+	      </if>
+	      <if test="category == 'btitle'">
+	         where btitle like '%'||#{searchWord}||'%'
+	      </if>
+	      <if test="category =='bcontent'">
+	         where bcontent like '%'||#{searchWord}||'%'
+	      </if>
+      </if>
+  </select>
+  
+  
+  
+  
+  <!-- 게시글 1개 저장 -->
+  <insert id="insertBoard">
+      insert into board values
+      (board_seq.nextval,#{id},#{btitle},#{bcontent},sysdate,0,0,board_seq.currval,0,#{bfile},0)
+  </insert>
+  
+  
+  <!-- 게시글 1개 삭제 -->
+  <delete id="boardDelete">
+  	  delete board where bno=#{bno}
+  </delete>
+  <!-- 게시글 1개 수정 -->
+  <update id="updateBoard">
+      update board set btitle=#{btitle},bcontent=#{bcontent},bdate=sysdate,bfile=#{bfile} where bno=#{bno}
+  </update>
+  
+  
+  
+  
+</mapper>

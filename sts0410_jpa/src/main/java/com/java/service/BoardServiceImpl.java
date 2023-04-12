@@ -1,6 +1,8 @@
 package com.java.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	//게시글 1개 가져오기
 	@Override
-	public BoardVo boardFindById(int bno) throws Exception {
+	public Map<String, Object> boardFindById(int bno) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		
 		//4. 람다식 예외처리
 		BoardVo boardVo = boardRepository.findById(bno).orElseThrow(
 				()->{
@@ -50,6 +54,12 @@ public class BoardServiceImpl implements BoardService {
 		//다음글
 		BoardVo nextBvo = boardRepository.findNext(bno);
 		System.out.println("nextBvo : "+nextBvo.getBno());
+		
+		map.put("boardVo",boardVo);
+		map.put("preBvo",preBvo);
+		map.put("nextBvo",nextBvo);
+		
+		return map;
 		
 //		1. findeById().get() 에러가 없음. 무조건 가져오기
 //		BoardVo boardVo = boardRepository.findById(bno).get();
@@ -72,7 +82,7 @@ public class BoardServiceImpl implements BoardService {
 //				}
 //		);
 		
-		return boardVo;
+		
 	}
 
 }

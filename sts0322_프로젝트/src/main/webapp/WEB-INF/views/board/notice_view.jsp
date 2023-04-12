@@ -11,17 +11,17 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/read.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/read.css">
   <script>
     function delBtn(){
     	if(confirm("게시글을 삭제하시겠습니까?")){
-    		location.href="boardDelete?bno=${boardVo.bno}&page=${page}";
+    		location.href="notice_del.do?bno=${bvo.bno}&page=${page}";
     	}
     }
     function updateBtn(){
     	if(confirm("게시글을 수정하시겠습니까?")){
-    		location.href="boardUpdate?bno=${boardVo.bno}&page=${page}";
+    		location.href="notice_update.do?bno=${bvo.bno}&page=${page}";
     	}
     }
   </script>
@@ -37,48 +37,48 @@
 
     <table>
       <tr>
-        <th colspan="2"><strong>제 목</strong> <span class="separator">|</span>${boardVo.btitle}</th>
+        <th colspan="2"><strong>제 목</strong> <span class="separator">|</span>${bvo.btitle}</th>
       </tr>
       <tr>
-        <td><strong>날 짜</strong> <span class="separator">|</span><fmt:formatDate value="${boardVo.bdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-        <td><strong>작성자</strong> <span class="separator">|</span>${boardVo.memberVo.id }</td>
+        <td><strong>날 짜</strong> <span class="separator">|</span><fmt:formatDate value="${bvo.bdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+        <td><strong>작성자</strong> <span class="separator">|</span>${bvo.id }</td>
       </tr>
       <tr>
-        <td><strong>파일명</strong> <span class="separator">|</span>${boardVo.bfile}</td>
-        <td><strong>조회수</strong> <span class="separator">|</span>${boardVo.bhit }</td>
+        <td><strong>파일명</strong> <span class="separator">|</span>${bvo.bfile}</td>
+        <td><strong>조회수</strong> <span class="separator">|</span>${bvo.bhit }</td>
       </tr>
       <tr>
         <td colspan="2" class="article">
-          ${boardVo.bcontent }
+          ${bvo.bcontent }
           <br>
-          <c:if test="${boardVo.bfile!=null}">
-            <img src="/upload/${boardVo.bfile}" width="80%">
+          <c:if test="${bvo.bfile!=null}">
+            <img src="upload/${bvo.bfile}" width="80%">
           </c:if>
         </td>
       </tr>
       <tr>
         <td colspan="2"><strong>다음글</strong> <span class="separator">|</span> 
-        <c:if test="${nextbvo==null}">
+        <c:if test="${nextRnum==null}">
           다음글이 없습니다.
         </c:if>
-        <c:if test="${nextbvo!=null}">
-          <a href="boardView?bno=${nextbvo.bno}&page=${page}">${nextbvo.btitle }</a>
+        <c:if test="${nextRnum!=null}">
+          <a href="notice_view.do?bno=${nextbvo.bno}&page=${page}">${nextbvo.btitle }</a>
         </c:if>
         </td>
       </tr>
       <tr>
         <td colspan="2"><strong>이전글</strong> <span class="separator">|</span>
-        <c:if test="${prebvo==null}">
+        <c:if test="${preRnum==null}">
           이전글이 없습니다.
         </c:if>
-        <c:if test="${prebvo!=null}">         
-          <a href="boardView?bno=${prebvo.bno}&page=${page}">${prebvo.btitle }</a>
+        <c:if test="${preRnum!=null}">         
+          <a href="notice_view.do?bno=${prebvo.bno}&page=${page}">${prebvo.btitle }</a>
         </c:if>
         </td>
       </tr>
     </table>
 
-    <div class="list"><a href="boardList?page=${page}">목록</a></div>
+    <div class="list"><a href="notice_list.do?page=${page}">목록</a></div>
     <div class="list" onclick="delBtn()">삭제</div>
     <div class="list" onclick="updateBtn()">수정</div>
   </section>

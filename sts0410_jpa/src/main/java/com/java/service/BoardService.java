@@ -1,6 +1,7 @@
 package com.java.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,6 @@ public interface BoardService {
 
 	Page<BoardVo> boardFindAll(Pageable pageable);
 
-	BoardVo boardFindById(int bno) throws Exception;
+	Map<String, Object> boardFindById(int bno) throws Exception;
 
 }
