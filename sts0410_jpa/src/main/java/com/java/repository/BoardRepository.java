@@ -7,6 +7,14 @@ import com.java.vo.BoardVo;
 
 public interface BoardRepository extends JpaRepository<BoardVo, Integer> {
 
+	//save
+	
+	//findAll
+	
+	//findById
+	
+	//deleteById
+	
 	//이전 게시글
 	@Query(value="SELECT * FROM boardvo "
 			+ "WHERE bno = (SELECT prev_bno FROM (SELECT bno, "

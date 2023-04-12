@@ -103,7 +103,7 @@
       <c:if test="${page==maxPage-1 }"><li class="last"></li></c:if>
     
     </ul>
-      <a href="boardWrite?page=1"><div class="write">쓰기</div></a>
+      <a href="boardWrite"><div class="write">쓰기</div></a>
   </section>
 
   <footer>

@@ -52,27 +52,27 @@
           ${boardVo.bcontent }
           <br>
           <c:if test="${boardVo.bfile!=null}">
-            <img src="/upload/${boardVo.bfile}" width="80%">
+            <img src="../upload/${boardVo.bfile}" width="80%">
           </c:if>
         </td>
       </tr>
       <tr>
         <td colspan="2"><strong>다음글</strong> <span class="separator">|</span> 
-        <c:if test="${nextbvo==null}">
+        <c:if test="${nextBvo==null}">
           다음글이 없습니다.
         </c:if>
-        <c:if test="${nextbvo!=null}">
-          <a href="boardView?bno=${nextbvo.bno}&page=${page}">${nextbvo.btitle }</a>
+        <c:if test="${nextBvo!=null}">
+          <a href="boardView?bno=${nextBvo.bno}&page=${page}">${nextBvo.btitle }</a>
         </c:if>
         </td>
       </tr>
       <tr>
         <td colspan="2"><strong>이전글</strong> <span class="separator">|</span>
-        <c:if test="${prebvo==null}">
+        <c:if test="${preBvo==null}">
           이전글이 없습니다.
         </c:if>
-        <c:if test="${prebvo!=null}">         
-          <a href="boardView?bno=${prebvo.bno}&page=${page}">${prebvo.btitle }</a>
+        <c:if test="${preBvo!=null}">         
+          <a href="boardView?bno=${preBvo.bno}&page=${page}">${preBvo.btitle }</a>
         </c:if>
         </td>
       </tr>

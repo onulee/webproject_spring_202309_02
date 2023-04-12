@@ -14,4 +14,8 @@ public interface BoardService {
 
 	Map<String, Object> boardFindById(int bno) throws Exception;
 
+	void deleteById(int bno);
+
+	int save(BoardVo boardVo);
+
 }

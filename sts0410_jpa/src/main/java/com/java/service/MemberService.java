@@ -7,4 +7,6 @@ public interface MemberService {
 	//저장
 	void memberSave(MemberVo memberVo);
 
+	MemberVo findById(String string);
+
 }
