@@ -10,11 +10,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/write.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/write.css">
   <script>
     function cancelBtn(){
-    	if(confirm("수정을 취소하시겠습니까?")) location.href="notice_list.do?page="+${page};
+    	if(confirm("수정을 취소하시겠습니까?")) location.href="boardList?page=${page}";
     }
     
     function writeBtn(){
@@ -39,10 +39,13 @@
   <section>
     <h1>관리자 수정</h1>
     <hr>
-    <form action="doNotice_update.do" name="update" method="post" enctype="multipart/form-data">
+    <form action="boardUpdate" name="update" method="post" enctype="multipart/form-data">
       <input type="hidden" name="page" value="${page}">
-      <input type="hidden" name="bno" value="${bvo.bno}">
-      <input type="hidden" name="oldfile" value="${bvo.bfile}">
+      <input type="hidden" name="bno" value="${boardVo.bno}">
+      <input type="hidden" name="bgroup" value="${boardVo.bgroup}">
+      <input type="hidden" name="bstep" value="${boardVo.bstep}">
+      <input type="hidden" name="bindent" value="${boardVo.bindent}">
+      <input type="hidden" name="bfile" value="${boardVo.bfile}">
       
       <table>
         <colgroup>
@@ -54,8 +57,8 @@
           <td>
             <div class="category-wrapper">
               <select name="topchk" id="topchk">
-                <option value="0" <c:if test="${bvo.topchk==0}">selected</c:if>>비공지</option>
-                <option value="1" <c:if test="${bvo.topchk==1}">selected</c:if>>공지</option>
+                <option value="0" <c:if test="${boardVo.topchk==0}">selected</c:if>>비공지</option>
+                <option value="1" <c:if test="${boardVo.topchk==1}">selected</c:if>>공지</option>
               </select>  
             </div>
           </td>
@@ -63,23 +66,23 @@
         <tr>
           <th>제목</th>
           <td>
-            <input type="text" name="btitle" id="btitle" value="${bvo.btitle}">
+            <input type="text" name="btitle" id="btitle" value="${boardVo.btitle}">
           </td>
         </tr>
         <tr>
           <th>내용</th>
           <td>
-            <textarea name="bcontent" id="bcontent" cols="50" rows="10">${bvo.bcontent}</textarea>
+            <textarea name="bcontent" id="bcontent" cols="50" rows="10">${boardVo.bcontent}</textarea>
           </td>
         </tr>
         <tr>
           <th>파일명</th>
-          <td>${bvo.bfile}</td>
+          <td>${boardVo.bfile}</td>
         </tr>
         <tr>
           <th>이미지 표시</th>
           <td>
-            <input type="file" name="bfile" id="bfile">
+            <input type="file" name="file" id="file">
           </td>
         </tr>
       </table>

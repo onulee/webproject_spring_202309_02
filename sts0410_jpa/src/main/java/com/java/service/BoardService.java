@@ -18,4 +18,6 @@ public interface BoardService {
 
 	int save(BoardVo boardVo);
 
+	int update(BoardVo boardVo);
+
 }

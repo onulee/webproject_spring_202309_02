@@ -53,9 +53,50 @@ public class BoardController {
 		return "board/boardView";
 	}
 	
+	
+	
+	
+	//게시글 수정 페이지
+	@GetMapping("/board/boardUpdate")
+	public String boardUpdate(@RequestParam(defaultValue = "1") int bno,
+			@RequestParam(defaultValue = "0") int page,Model model) throws Exception {
+		//1개 게시글 가져오기
+		Map<String, Object> map = boardService.boardFindById(bno);
+		
+		model.addAttribute("boardVo",map.get("boardVo"));
+		model.addAttribute("page",page);
+		return "board/boardUpdate";
+	}
+	
+	//게시글 수정
+	@PostMapping("/board/boardUpdate")
+	public String boardUpdate(BoardVo boardVo,@RequestPart MultipartFile file,
+			Model model) throws Exception {
+		//id만 저장이 아니라 MemberVo객체를 저장해야 함.
+		MemberVo mVo = memberService.findById("aaa");
+		boardVo.setMemberVo(mVo);
+		
+		if(!file.isEmpty()) {
+			String originFName = file.getOriginalFilename();
+			UUID uuid = UUID.randomUUID(); //임의의 랜덤숫자 생성함수 47829479475982745987249579243
+			String uploadFName = String.format("%s_%s",uuid.toString(),originFName);
+			String fileSaveUrl = "c:/upload/";
+			File f = new File(fileSaveUrl+uploadFName);
+			file.transferTo(f);
+			boardVo.setBfile(uploadFName);
+		}
+		
+		// 1개 게시글 수정
+		int result = boardService.update(boardVo);
+		
+		
+		return "redirect:/board/boardList";
+	}
+	
 	//게시글 쓰기 페이지
 	@GetMapping("/board/boardWrite")
-	public String boardWrite() {
+	public String boardWrite(@RequestParam(defaultValue = "1") int bno,
+			@RequestParam(defaultValue = "0") int page) {
 		return "board/boardWrite";
 	}
 	

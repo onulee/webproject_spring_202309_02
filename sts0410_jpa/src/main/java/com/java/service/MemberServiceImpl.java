@@ -36,4 +36,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberVo;
 	}
 
+
+	@Override //로그인 
+	public MemberVo findByIdAndPw(String id, String pw) {
+		MemberVo memberVo = memberRepository.findByIdAndPw(id,pw);
+		
+		return memberVo;
+	}
+
 }

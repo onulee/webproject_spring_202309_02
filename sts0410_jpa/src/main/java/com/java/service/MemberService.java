@@ -9,4 +9,6 @@ public interface MemberService {
 
 	MemberVo findById(String string);
 
+	MemberVo findByIdAndPw(String id, String pw);
+
 }

@@ -118,4 +118,14 @@ public class BoardServiceImpl implements BoardService {
 		return 0;
 	}
 
+
+	@Transactional
+	@Override
+	public int update(BoardVo boardVo) {
+		boardVo.setBdate(new Timestamp(System.currentTimeMillis()));
+		BoardVo result = boardRepository.save(boardVo); //db저장
+		System.out.println("update : "+ result.getBno());
+		return 0;
+	}
+
 }

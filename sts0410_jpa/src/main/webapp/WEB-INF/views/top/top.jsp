@@ -3,13 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>    
 <header>
     <ul>
-      <c:if test="${sessionId==null}">
-	      <li><a href="join02">회원가입</a></li> <span>|</span>
-	      <li><a href="login">로그인</a></li> <span>|</span>
+      <c:if test="${member.id==null}">
+	      <li><a href="/join02">회원가입</a></li> <span>|</span>
+	      <li><a href="/login">로그인</a></li> <span>|</span>
       </c:if>
-      <c:if test="${sessionId!=null}">
-	      <li><a href="member_info_update">${sessionName}님</a></li> <span>|</span>
-	      <li><a href="logout.do">로그아웃</a></li> <span>|</span>
+      <c:if test="${member.id!=null}">
+	      <li><a href="member_info_update">${member.name}님</a></li> <span>|</span>
+	      <li><a href="/logout">로그아웃</a></li> <span>|</span>
       </c:if>
       <li><a href="/board/boardList">고객행복센터</a></li> <span>|</span>
       <li>배송지역검색</li> <span>|</span>
