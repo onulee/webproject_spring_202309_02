@@ -11,4 +11,6 @@ public interface BoardService {
 
 	Page<BoardVo> boardFindAll(Pageable pageable);
 
+	BoardVo boardFindById(int bno) throws Exception;
+
 }

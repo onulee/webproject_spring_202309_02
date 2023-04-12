@@ -71,7 +71,7 @@
 	          <c:forEach begin="1" end="${bvo.bindent}" step="1">
 	            <img src="images/icon_reply.png">
 	          </c:forEach>
-	          <a href="notice_view?bno=${bvo.bno}&page=${page}">${bvo.btitle}</a>
+	          <a href="boardView?bno=${bvo.bno}&page=${page}">${bvo.btitle}</a>
 	        </td>
 	        <td>${bvo.memberVo.name}</td>
 	        <td><fmt:formatDate value="${bvo.bdate}" pattern="yyyy-MM-dd"/></td>

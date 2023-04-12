@@ -11,8 +11,8 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/read.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/read.css">
   <script>
     function delBtn(){
     	if(confirm("게시글을 삭제하시겠습니까?")){
@@ -37,22 +37,22 @@
 
     <table>
       <tr>
-        <th colspan="2"><strong>제 목</strong> <span class="separator">|</span>${bvo.btitle}</th>
+        <th colspan="2"><strong>제 목</strong> <span class="separator">|</span>${boardVo.btitle}</th>
       </tr>
       <tr>
-        <td><strong>날 짜</strong> <span class="separator">|</span><fmt:formatDate value="${bvo.bdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-        <td><strong>작성자</strong> <span class="separator">|</span>${bvo.id }</td>
+        <td><strong>날 짜</strong> <span class="separator">|</span><fmt:formatDate value="${boardVo.bdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+        <td><strong>작성자</strong> <span class="separator">|</span>${boardVo.memberVo.id }</td>
       </tr>
       <tr>
-        <td><strong>파일명</strong> <span class="separator">|</span>${bvo.bfile}</td>
-        <td><strong>조회수</strong> <span class="separator">|</span>${bvo.bhit }</td>
+        <td><strong>파일명</strong> <span class="separator">|</span>${boardVo.bfile}</td>
+        <td><strong>조회수</strong> <span class="separator">|</span>${boardVo.bhit }</td>
       </tr>
       <tr>
         <td colspan="2" class="article">
-          ${bvo.bcontent }
+          ${boardVo.bcontent }
           <br>
-          <c:if test="${bvo.bfile!=null}">
-            <img src="upload/${bvo.bfile}" width="80%">
+          <c:if test="${boardVo.bfile!=null}">
+            <img src="upload/${boardVo.bfile}" width="80%">
           </c:if>
         </td>
       </tr>

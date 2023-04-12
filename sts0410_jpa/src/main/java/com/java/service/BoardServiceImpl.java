@@ -1,6 +1,7 @@
 package com.java.service;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +30,49 @@ public class BoardServiceImpl implements BoardService {
 		//JpaRepository findAll 함수호출 list리턴
 		Page<BoardVo> page = boardRepository.findAll(pageable);
 		return page;
+	}
+
+	
+	//게시글 1개 가져오기
+	@Override
+	public BoardVo boardFindById(int bno) throws Exception {
+		//4. 람다식 예외처리
+		BoardVo boardVo = boardRepository.findById(bno).orElseThrow(
+				()->{
+					return new IllegalAccessException(bno+"번 해당 게시글이 없습니다.");
+				}
+		);
+		
+		//이전글 - 메소드신규생성
+		BoardVo preBvo = boardRepository.findPrev(bno);
+		System.out.println("preBvo : "+preBvo.getBno());
+		
+		//다음글
+		BoardVo nextBvo = boardRepository.findNext(bno);
+		System.out.println("nextBvo : "+nextBvo.getBno());
+		
+//		1. findeById().get() 에러가 없음. 무조건 가져오기
+//		BoardVo boardVo = boardRepository.findById(bno).get();
+//		2. null일때 빈 객체를 리턴
+//		BoardVo boardVo = boardRepository.findById(bno).orElseGet(
+//				new Supplier<BoardVo>() {
+//					@Override
+//					public BoardVo get() {
+//						return new BoardVo();
+//					}
+//				}
+//		);
+		//3. orElseThrow() 예외처리
+//		BoardVo boardVo = boardRepository.findById(bno).orElseThrow(
+//				new Supplier<IllegalAccessException>() {
+//					@Override
+//					public IllegalAccessException get() {
+//						return new IllegalAccessException(bno+"번 해당 게시글이 없습니다.");
+//					}
+//				}
+//		);
+		
+		return boardVo;
 	}
 
 }
